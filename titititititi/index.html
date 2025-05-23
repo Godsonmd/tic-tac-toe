@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <div class="bdy">
+            <div class="glass-body">
+                <div class="body-content">
+                    <img id="head-img" src="tictactoe.png">
+                    <h1>ARE YOU READY...?</h1>
+                    <a href="input.html">
+                        <button class="play" onclick="sound()">
+                            <div class="play-button" onclick="sound()">
+                                <div class="play-icon"></div>
+                                <audio id="bu" src="/audio/click.wav" preload="auto"></audio>
+                            </div>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<script>
+    let button=document.querySelector(".play-icon");
+    button.addEventListener("click",sound());
+    function sound(){
+        document.getElementById("bu").play();
+    }
+</script>
+</html>
