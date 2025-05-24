@@ -1,6 +1,6 @@
 
 
-## ❌⭕ Tic Tac Toe – 2 Player Game (Web-Based)
+## ⭕ Tic Tac Toe – 2 Player Game (Web-Based) ❌
 
 This is a **web-based Tic Tac Toe game** built using **HTML**, **CSS**, and **JavaScript** — with no backend or computer player logic. It supports two human players playing from the same device and includes dynamic controls to customize player icons and restart game rounds easily.
 
