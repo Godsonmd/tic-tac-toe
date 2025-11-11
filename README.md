@@ -54,4 +54,5 @@ This is a **web-based Tic Tac Toe game** built using **HTML**, **CSS**, and **Ja
 * No computer AI — strictly human vs human.
 * Game state resets on page refresh (no persistence).
 
-
+## 🕹️ Play the Game
+👉 [Click here to play now!](https://godsonmd.github.io/tic-tac-toe/)
