@@ -1,158 +1,254 @@
-*{
-    margin: 0;
-    padding: 0;
+:root{
+  --aqua: #00ffff;
+  --glass-edge: rgba(255,255,255,0.62);
+  --glass-edge-2: rgba(255,255,255,0.586);
+  --bg-grad: linear-gradient(40deg, black 75%, var(--aqua));
+  --glass-bg: linear-gradient(40deg, rgba(0,255,255,0.308), #00000046 45%);
+  --form-bg: rgba(0,0,0,0.75);
+  --max-card-width: 920px;
 }
-body{
-    background-color: black;
+
+/* Reset and sensible defaults */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* fixed invalid value from original */
+  margin: 0;
+  padding: 0;
 }
+
+html,body {
+  height: 100%;
+  font-family: "Arial Black", Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: black;
+  color: var(--aqua);
+  -webkit-text-size-adjust: 100%;
+}
+
+/* background layer */
 .back{
-    position:absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(40deg, black 75%,aqua );
-    animation-name: backani;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;
-    opacity: 0;
+  position: fixed;
+  inset: 0;
+  min-height: 100vh;
+  background: var(--bg-grad);
+  animation: backani 900ms ease both;
+  z-index: 0;
 }
-@keyframes backani {
-    to{opacity: 1;}
-}
+@keyframes backani { to { opacity: 1; } }
+
+/* main glass container - responsive and centered */
 .glass{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    background: linear-gradient(40deg,rgba(0, 255, 255, 0.308)  , #00000046 45% );
-    height: 85%;
-    width: 89%;
-    transform: translate(-50%,-50%);
-    border: none;
-    border-radius: 0px;
-    display:flex;
-    flex-direction: column;
-    gap: 25px;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    color: aqua;
-    opacity: 0;
-    /* background-color: rgba(57, 111, 130, 0.244); */
-    backdrop-filter: blur(10px);
-    border-top: 1px solid  rgba(255, 255, 255, 0.586);
-    border-right: 1px solid  rgba(255, 255, 255, 0.623);
-    border-left: 1px solid  rgba(255, 255, 255, 0.623);
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.023);
-    animation-name: glassani;
-    animation-delay: 0s;
-    animation-duration: 2s;
-    animation-fill-mode: forwards;       
+  position: relative;
+  inset: auto;
+  margin: 4vh auto;
+  width: min(92%, var(--max-card-width));
+  max-width: var(--max-card-width);
+  border-radius: 18px;
+  padding: clamp(12px, 2.5vw, 28px);
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid var(--glass-edge-2);
+  border-right: 1px solid var(--glass-edge);
+  border-left: 1px solid var(--glass-edge);
+  display: grid;
+  grid-template-columns: 1fr min(420px, 40%);
+  gap: clamp(12px, 2.5vw, 28px);
+  align-items: center;
+  color: var(--aqua);
+  z-index: 2;
+  animation: glassani 900ms ease both;
+  box-shadow: 0 6px 28px rgba(0,0,0,0.32);
 }
 @keyframes glassani {
-    from{opacity: 0;border-radius: 0px;}
-      
-    to{opacity: 1;border-radius: 50px;}    
+  from { opacity: 0; border-radius: 0px; transform: translateY(6px); }
+  to   { opacity: 1; border-radius: 50px; transform: translateY(0); }
 }
-.glassb{
-    display: flex;
 
-}
-.submit{
-    color: aqua;
-    padding: 5px;
-    border:  solid #000;
-    background-color: #000000;
-    border-radius: 10px;
-    font-size: 2vmin;
-    transition: color 2s,border 2s;
-}
-.submit:hover{
-    color: #ffffff;
-    border-color: aqua;
-}
-.showname{
-   
-    color: aqua;
-    padding: 5px;
-    border:  solid transparent;
-    background-color:transparent;
-    border-radius: 10px;
-    font-size: 2vmin;
-    transition: color 2s,border 2s;
-}
-.showname:hover{
-    color: #ffffff;
-    border-color: aqua;
-}
-.head{
-    color:white;
-    animation-name: example;
-    text-shadow: 0 0 10px aqua, 0 0 20px aqua, 0 0 40px aqua, 0 0 80px aqua, 0 0 160px aqua;
-}
-#demo{
-    transition: all 2s;
-    letter-spacing: 1mm;
-}
-#demo:hover{
-    color: #ffffff;
-    font-size: 20px;
-    letter-spacing: 2mm;
-}
-input{
-    padding: 1px;
-   background-color: transparent;
-   border: transparent;
-   transition: border ;
-   color: aqua;
-   text-align: center;
-   text-decoration: aqua;
-}
-input:hover{
-    border: solid rgb(0, 255, 255);
-    color: white;background-color: transparent;
-}
-@property --angle{
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
+/* Decorative spinning block (kept visually separate) */
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
 }
 .glassb{
-    --colorv:aqua;
-    height: 40vmin;
-    width: 45vmin;
-    background-image: conic-gradient(from var(--angle),transparent 20%, var(--colorv) 50% ,transparent 20% ,var(--colorv) );
-    padding: 1mm;
-    position: relative;
-    border-radius: 10px;
-    animation: spin 5s infinite ease-in-out;
+  --angle: 0deg;
+  --colorv: var(--aqua);
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1; /* keep it square */
+  min-height: 220px;
+  max-height: 420px;
+  background-image: conic-gradient(from var(--angle), transparent 20%, var(--colorv) 50%, transparent 20%, var(--colorv));
+  padding: 10px;
+  border-radius: 12px;
+  display: block;
+  filter: saturate(1.1);
+  animation: spin 5s linear infinite;
+  place-self: center;
 }
 @keyframes spin {
-    
-    0%{--angle:0deg;--colorv:aqua;}
-    50%{ --colorv:aqua;}
-    100%{--angle:360deg; --colorv:aqua;}    
+  0%   { --angle: 0deg; --colorv: var(--aqua); }
+  100% { --angle: 360deg; --colorv: var(--aqua); }
 }
 
+/* form layout and controls */
 form{
-    text-align: center;
-    width: 45vmin;
+  background: var(--form-bg);
+  border-radius: 10px;
+  padding: clamp(12px, 2.2vw, 22px);
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  text-align: center;
+}
+
+form h1.head{
+  color: #ffffff;
+  text-shadow: 0 0 10px var(--aqua), 0 0 20px var(--aqua), 0 0 40px var(--aqua);
+  font-size: clamp(1.1rem, 2.8vw, 1.6rem);
+}
+
+/* inputs */
+input {
+  width: clamp(220px, 85%, 520px);
+  max-width: 100%;
+  padding: 8px 12px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.06);
+  color: var(--aqua);
+  border-radius: 8px;
+  text-align: center;
+  transition: border-color 200ms ease, color 200ms ease, background-color 200ms ease, transform 120ms ease;
+  outline: none;
+  font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+}
+input::placeholder{
+  color: var(--aqua);
+  opacity: 0.45;
+}
+input:hover,
+input:focus{
+  border-color: var(--aqua);
+  color: #fff;
+  background: rgba(0,0,0,0.18);
+}
+
+/* buttons */
+.controls{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.submit,
+.showname {
+  padding: 8px 14px;
+  border-radius: 8px;
+  background-color: #000;
+  color: var(--aqua);
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-size: clamp(0.85rem, 1.6vw, 1rem);
+  transition: color 200ms ease, border-color 200ms ease, transform 120ms ease;
+}
+.submit:hover,
+.showname:hover{
+  color: #fff;
+  border-color: var(--aqua);
+}
+.showname{
+  background: transparent;
+}
+
+/* interactive demo hover (kept subtle) */
+#demo{
+  transition: all 250ms ease;
+  letter-spacing: 1mm;
+}
+#demo:hover{
+  color: #ffffff;
+  transform: translateY(-2px);
+  letter-spacing: 1.4mm;
+}
+
+/* selection styles */
+form::selection,
+input::selection,
+.head::selection {
+  background-color: rgba(127,255,212,0.8);
+  color: #000;
+  text-shadow: none;
+}
+
+/* Accessibility & motion reduction */
+@media (prefers-reduced-motion: reduce) {
+  .glassb,
+  .back,
+  .glass,
+  .submit,
+  .showname {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Tablet / medium screens */
+@media (max-width: 1024px){
+  .glass{
+    grid-template-columns: 1fr; /* stack decorative + form */
+    gap: 14px;
+    padding: clamp(12px, 3vw, 20px);
+  }
+  .glassb{ order: -1; max-height: 360px; }
+}
+
+/* Small phones */
+@media (max-width: 600px){
+  .glass{
+    margin: 2vh auto;
+    width: min(96%, 420px);
+    padding: 14px;
+    border-radius: 14px;
+    grid-template-columns: 1fr;
+  }
+
+  /* hide the heavy decorative gradient on small screens for clarity & performance */
+  .glassb{
+    display: none;
+  }
+
+  input{
+    width: 92%;
+    font-size: 1rem;
+  }
+
+  .submit,
+  .showname{
+    width: calc(50% - 8px);
+    padding: 10px 8px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Very small narrow devices */
+@media (max-width: 420px){
+  form{
     padding: 10px;
-    background-color: black;
-    border-radius: 10px;
-    border:solid blur(1.25rem);
-}
-form input::placeholder{
-    color: aqua;
-    opacity: 0.4;
-}
-
-input:active{
-    font-size: 1.9vmin;
-}
-
-form::selection,input::selection,.head::selection{
-    background-color:rgba(127, 255, 212, 0.8);
-    color: #000;
-    text-shadow: transparent;
+  }
+  input{
+    padding: 8px;
+    font-size: 0.95rem;
+  }
+  .submit,
+  .showname{
+    width: 100%;
+  }
 }
