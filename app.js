@@ -209,7 +209,7 @@ const checkWinner = () => {
   }
 };
 msg.addEventListener('click',()=>{
-  if(namea.charAt()!=" " || nameb.charAt()!=" ")
+  if(namea && nameb)
   {newGameBtn.classList.remove("hide");
   exit.classList.remove("hide");
   printbtn.classList.remove("hide");}
@@ -267,7 +267,7 @@ function showerror(){
   exit.classList.remove("hide");
   tt.classList.add("hide");
 }
-if(namea==="" || nameb==="")
+if(!namea && !nameb)
   showerror();
 else if(namea.charAt()===" " || nameb.charAt()===" ")
   showerror();
