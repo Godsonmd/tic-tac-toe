@@ -334,3 +334,47 @@ button:active{
 
     to{opacity: 0.1;margin-top: 65vh;}    
 }
+@media only screen and (max-width: 600px) {
+    #draw{
+        margin-left: 50vh;
+    }
+    .line1{
+        left: 30px;
+        top:30px;
+    }
+    .line2{
+        left: -50px;
+        top: 100px;
+    }
+    .line5{
+        left: 90px;
+        top: 100px;
+    }
+    .line3{
+        left: 0px;
+        top: 100px;
+    }
+    .line6{
+        left: 0px;
+        top: 100px;
+    }
+    .line4{
+        left: 20px;
+        top: 100px;
+    }
+    .line7{
+        top: 100px;
+        left: 20px;
+    }
+    .line8{
+        left: 20px;
+        top: 170px;
+    }
+    .tt{
+        transform: translate(120%,30px);
+    }
+    .tt button{
+        font-size: 3vmin;
+        padding: 5px;
+    }
+}
