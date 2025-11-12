@@ -72,13 +72,13 @@ body{
     border-color: aqua;
 }
 .showname{
+   width: 10vmin;
    
     color: aqua;
     padding: 5px;
     border:  solid transparent;
     background-color:transparent;
     border-radius: 10px;
-    font-size: 2vmin;
     transition: color 2s,border 2s;
 }
 .showname:hover{
@@ -136,11 +136,17 @@ input:hover{
 
 form{
     text-align: center;
-    width: 45vmin;
+    width: 100vw;
     padding: 10px;
     background-color: black;
     border-radius: 10px;
     border:solid blur(1.25rem);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    
 }
 form input::placeholder{
     color: aqua;
@@ -155,4 +161,20 @@ form::selection,input::selection,.head::selection{
     background-color:rgba(127, 255, 212, 0.8);
     color: #000;
     text-shadow: transparent;
+}
+@media only screen and (max-width: 600px) {
+    .glass{
+        width: 90vw;
+        height: 90vh;
+    }
+    .glassb{
+        width: 70vw;
+        height: 60vh;
+    }
+    form{
+        width: 70vw;
+    }
+    .showname{
+        width: 20vmin;
+    }
 }
