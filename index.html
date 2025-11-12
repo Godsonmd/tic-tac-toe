@@ -17,7 +17,7 @@
                     <a href="input.html">
                         <button class="play" onclick="sound()">
                             <div class="play-button" onclick="sound()">
-                                <div class="play-icon"></div>
+                                <div class="play-icon" onclick="sound()"></div>
                                 <audio id="bu" src="audio/click.wav" preload="auto"></audio>
                             </div>
                         </button>
@@ -28,13 +28,12 @@
     </main>
 </body>
 <script>
-    let button=document.querySelector(".play-icon");
-    button.addEventListener("click",sound);
     function sound(){
         document.getElementById("bu").play();
     }
 </script>
 </html>
+
 
 
 
