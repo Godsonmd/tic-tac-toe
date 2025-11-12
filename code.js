@@ -20,6 +20,8 @@ form.addEventListener('submit', function(event) {
 function go(){
 name1=document.iform.player1.value;
 name2=document.iform.player2.value;
+    if(!name1 && !name2)
+        {document.getElementById("demo").innerText="";return;}
 localStorage.setItem("NAMEA",name1);
 localStorage.setItem("NAMEB",name2);
 window.location.href="play.html";
@@ -27,3 +29,4 @@ window.location.href="play.html";
 function sound(){
     document.getElementById("bu").play();
 }
+
