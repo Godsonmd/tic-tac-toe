@@ -3,6 +3,12 @@
     padding: 0;
     box-sizing:fill;
 }
+body,html{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 .bdy{
     position:absolute;
     top: 0;
@@ -131,4 +137,20 @@ h1{
 }
 @keyframes play {
     to{font-size: 4vmin;color: red;}
+}
+
+@media only screen and (max-width: 600px) {
+    .glass-body{
+        width: 90vw;
+        height: 90vh;
+    }
+    .glass-body::after{
+        width: 60vw;
+        height: 70vh;
+    }
+    #head-img{
+        width: 100vw;
+        height: 40vmin;
+    }
+    
 }
