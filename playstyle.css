@@ -377,4 +377,8 @@ button:active{
         font-size: 3vmin;
         padding: 5px;
     }
+    .tic:hover{
+        font-size:10vmin;
+    }
 }
+
