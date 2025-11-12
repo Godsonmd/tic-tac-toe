@@ -12,18 +12,21 @@
             <div class="glass">
                 
                 <div class="glassb">
-                  <form name="iform" action="play.html" class="formd" >
-                    <h1 class="head"> ENTER DETAILS </h1><br><br>
-                PLAYER FOR O: <input autofocus autocomplete="off" type="text" name="player1" required placeholder="  Enter name.." size="16" onkeydown="go()" maxlength="10" onkeyup="go()">
-                    <br><br><br>
-                PLAYER FOR X: <input autocomplete="off" type="text" name="player2" required placeholder="  Enter name..." size="16" onkeydown="go()" maxlength="10" onkeyup="go()">
-                <br><br><br>
-                <center><input type="reset" name="reset" class="showname" value="RESET" onclick="sound()">
-                <input type="submit" class="showname"  value="SUBMIT" onmouseenter="show()" onclick="go(); sound()"></center>
-
+                  <form name="iform" class="formd" >
+                    <h1 class="head"> ENTER DETAILS </h1>
+                    <label for="inp1">
+                        PLAYER FOR O: <input id="inp1" autofocus autocomplete="off" type="text" name="player1" required placeholder="  Enter name.." size="16"  maxlength="10">
+                    </label>
+                    <label for="inp2">
+                        PLAYER FOR X: <input autocomplete="off" type="text" name="player2" required placeholder="  Enter name..." size="16"  maxlength="10" id="inp2">
+                    </label>
+                <p>
+                    <input type="reset" name="reset" class="showname" value="RESET" onclick="sound()">
+                    <input type="submit" class="showname"  value="SUBMIT" onmouseenter="show()" onclick="go(); sound()">
+                </p>
                 </form>
                 </div>
-                <br>
+                
                 <p id="demo"></p>
             </div>
         </div>
@@ -32,5 +35,4 @@
     </main>
 </body>
 <script src="code.js"></script>
-
 </html>
