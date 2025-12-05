@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scangle Web Printer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* Design the bill specifically for 58mm width */
+        #printableArea {
+            width: 58mm; 
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            display: none; /* Hide from screen, usually */
+        }
+    </style>
+</head>
+<body>
+
+    <h3>Billing System</h3>
+    <button onclick="printBill()">PRINT BILL via BLUETOOTH</button>
+
+    <script>
+        function printBill() {
+    // 1. The text you want to print
+    var textData = 
+        "      MY SHOP      \n" +
+        "-------------------\n" +
+        "Item 1        $10.00\n" +
+        "Item 2        $5.00 \n" +
+        "-------------------\n" +
+        "TOTAL         $15.00\n" +
+        "\n\n";
+
+    // 2. Convert text to Base64 (Cleaner transmission)
+    // window.btoa() creates a Base64 string from text
+    var base64Data = window.btoa(textData);
+
+    // 3. Construct the Intent
+    // Notice we use 'base64,' prefix before the actual data
+    var intent = "intent:base64," + base64Data + "#Intent;" + 
+                 "scheme=rawbt;" + 
+                 "package=ru.a402d.rawbtprinter;" + 
+                 "S.browser_fallback_url=https://play.google.com/store/apps/details?id=ru.a402d.rawbtprinter;" + 
+                 "end;";
+
+    // 4. Trigger
+    window.location.href = intent;
+}
+    </script>
+</body>
+</html>
