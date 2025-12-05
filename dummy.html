@@ -1,50 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Scangle Web Printer</title>
+    <title>Simple Bill</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        /* Design the bill specifically for 58mm width */
-        #printableArea {
-            width: 58mm; 
-            font-family: 'Courier New', monospace;
-            font-size: 12px;
-            display: none; /* Hide from screen, usually */
-        }
+        button { padding: 20px; font-size: 20px; width: 100%; background: #28a745; color: white; border: none; }
     </style>
 </head>
 <body>
 
-    <h3>Billing System</h3>
-    <button onclick="printBill()">PRINT BILL via BLUETOOTH</button>
+    <button onclick="printTextBill()">PRINT SIMPLE BILL</button>
 
     <script>
-        function printBill() {
-    // 1. The text you want to print
-    var textData = 
-        "      MY SHOP      \n" +
-        "-------------------\n" +
-        "Item 1        $10.00\n" +
-        "Item 2        $5.00 \n" +
-        "-------------------\n" +
-        "TOTAL         $15.00\n" +
-        "\n\n";
+        function printTextBill() {
+            // ESC/POS Commands
+            // \x1B\x40 = Initialize Printer
+            // \x1B\x61\x01 = Center Align
+            // \x1B\x61\x00 = Left Align
+            // \x0A = New Line
+            // \x1D\x56\x42\x00 = Cut Paper (if supported)
 
-    // 2. Convert text to Base64 (Cleaner transmission)
-    // window.btoa() creates a Base64 string from text
-    var base64Data = window.btoa(textData);
+            var CMD = {
+                INIT: '\x1B\x40',
+                CENTER: '\x1B\x61\x01',
+                LEFT: '\x1B\x61\x00',
+                BOLD_ON: '\x1B\x45\x01',
+                BOLD_OFF: '\x1B\x45\x00',
+                CUT: '\x1D\x56\x42\x00'
+            };
 
-    // 3. Construct the Intent
-    // Notice we use 'base64,' prefix before the actual data
-    var intent = "intent:base64," + base64Data + "#Intent;" + 
-                 "scheme=rawbt;" + 
-                 "package=ru.a402d.rawbtprinter;" + 
-                 "S.browser_fallback_url=https://play.google.com/store/apps/details?id=ru.a402d.rawbtprinter;" + 
-                 "end;";
+            var bill = 
+                CMD.INIT +
+                CMD.CENTER + CMD.BOLD_ON + "MY SHOP KERALA\n" + CMD.BOLD_OFF +
+                "Ph: 9876543210\n" +
+                "--------------------------------\n" +
+                CMD.LEFT +
+                "Item          Qty       Price\n" +
+                "--------------------------------\n" +
+                "Apple          1        120.00\n" +
+                "Milk           2         50.00\n" +
+                "Bread          1         40.00\n" +
+                "--------------------------------\n" +
+                CMD.CENTER + CMD.BOLD_ON + "TOTAL: 210.00\n" + CMD.BOLD_OFF +
+                "\n\n\n" + // Feed lines
+                "Thank you visit again!\n\n\n";
 
-    // 4. Trigger
-    window.location.href = intent;
-}
+            // Base64 Encode
+            var base64Data = window.btoa(bill);
+
+            var intent = "intent:base64," + base64Data + "#Intent;" + 
+                         "scheme=rawbt;" + 
+                         "package=ru.a402d.rawbtprinter;" + 
+                         "S.browser_fallback_url=https://play.google.com/store/apps/details?id=ru.a402d.rawbtprinter;" + 
+                         "end;";
+
+            window.location.href = intent;
+        }
     </script>
 </body>
 </html>
